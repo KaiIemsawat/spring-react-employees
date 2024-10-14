@@ -1,10 +1,30 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import EmployeeService from "../service/EmployeeService";
 
 const EmployeeList = () => {
     const nav = useNavigate();
 
+    const [loading, setloading] = useState(true);
+    const [employees, setemployees] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setloading(true);
+            try {
+                const res = await EmployeeService.getEmployee();
+                console.log(res.data);
+                setemployees(res.data);
+            } catch (error) {
+                console.error(error);
+            }
+            setloading(false);
+        };
+        fetchData();
+    }, []);
+
     return (
-        <div className="container mx-auto my-6">
+        <div className="container mx-auto my-6 max-w-[1240px] px-16">
             <div className="h-12">
                 <button
                     onClick={() => nav("/AddEmployee")}
@@ -17,10 +37,14 @@ const EmployeeList = () => {
                 <table className="min-w-full">
                     <thead>
                         <tr className="bg-[#aab3b3] font-semibold text-slate-600 h-12 text-lg uppercase tracking-wider">
-                            <th className="text-left ps-6">Firstname</th>
-                            <th className="text-left ps-6">Lastname</th>
-                            <th className="text-left ps-6 truncate">
-                                Email Address
+                            <th className="text-left ps-6">
+                                <p>Firstname</p>
+                            </th>
+                            <th className="text-left ps-6">
+                                <p>Lastname</p>
+                            </th>
+                            <th className="text-left ps-6">
+                                <p className="line-clamp-1">Email Address</p>
                             </th>
                             <th className="text-right pr-6">Actions</th>
                         </tr>
