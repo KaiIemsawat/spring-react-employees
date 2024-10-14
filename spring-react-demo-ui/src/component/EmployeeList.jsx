@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmployeeService from "../service/EmployeeService";
+import Employee from "./Employee";
 
 const EmployeeList = () => {
     const nav = useNavigate();
@@ -13,7 +14,7 @@ const EmployeeList = () => {
             setloading(true);
             try {
                 const res = await EmployeeService.getEmployee();
-                console.log(res.data);
+                // console.log(res.data);
                 setemployees(res.data);
             } catch (error) {
                 console.error(error);
@@ -49,33 +50,17 @@ const EmployeeList = () => {
                             <th className="text-right pr-6">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr className="bg-[#cdd3d3] text-slate-800 h-12 text-lg">
-                            <td className="text-left px-6 py-2 whitespace-nowrap">
-                                <div className="">testname</div>
-                            </td>
-                            <td className="text-left px-6 py-2 whitespace-nowrap">
-                                <div className="">testname</div>
-                            </td>
-                            <td className="text-left px-6 py-2 whitespace-nowrap">
-                                <div className="">testname</div>
-                            </td>
-                            <td className="text-right pr-6 py-2 whitespace-nowrap font-semibold flex justify-end gap-4">
-                                <a
-                                    href="#"
-                                    className="text-slate-600 hover:text-amber-500 hover:underline duration-300"
-                                >
-                                    Edit
-                                </a>
-                                <a
-                                    href="#"
-                                    className="text-slate-500 hover:text-rose-500 hover:underline duration-300"
-                                >
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
+                    {!loading && (
+                        <tbody>
+                            {!!employees &&
+                                employees.map((employee) => (
+                                    <Employee
+                                        employee={employee}
+                                        key={employee.id}
+                                    />
+                                ))}
+                        </tbody>
+                    )}
                 </table>
             </div>
         </div>
