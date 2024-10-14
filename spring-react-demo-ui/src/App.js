@@ -3,6 +3,7 @@ import "./App.css";
 import AddEmployee from "./component/AddEmployee";
 import Navbar from "./component/Navbar";
 import EmployeeList from "./component/EmployeeList";
+import UpdateEmployee from "./component/UpdateEmployee";
 
 function App() {
     return (
@@ -13,6 +14,10 @@ function App() {
                     <Route index element={<EmployeeList />} />
                     <Route path="/employeeLisst" element={<EmployeeList />} />
                     <Route path="/AddEmployee" element={<AddEmployee />} />
+                    <Route
+                        path="/editEmployee/:id"
+                        element={<UpdateEmployee />}
+                    />
                 </Routes>
             </BrowserRouter>
         </div>

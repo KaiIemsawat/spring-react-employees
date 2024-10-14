@@ -13,6 +13,8 @@ public class EmployeeEntity {
     private Long id;
     private String firstname;
     private String lastname;
+
+    @Column(unique = true)
     private String emailAddress;
 
 }
