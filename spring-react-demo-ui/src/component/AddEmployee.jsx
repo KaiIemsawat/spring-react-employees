@@ -1,5 +1,6 @@
 import { useState } from "react";
 import EmployeeService from "../service/EmployeeService";
+import { useNavigate } from "react-router-dom";
 
 const AddEmployee = () => {
     const [employee, setEmployee] = useState({
@@ -8,6 +9,8 @@ const AddEmployee = () => {
         lastname: "",
         emailAddress: "",
     });
+
+    const nav = useNavigate();
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -19,10 +22,16 @@ const AddEmployee = () => {
         EmployeeService.saveEmployee(employee)
             .then((res) => {
                 console.log(res);
+                nav("/");
             })
             .catch((err) => {
                 console.error(err);
             });
+    };
+
+    const clearData = (e) => {
+        e.preventDefault();
+        setEmployee({ id: "", firstname: "", lastname: "", emailAddress: "" });
     };
 
     return (
@@ -66,7 +75,10 @@ const AddEmployee = () => {
                     />
                 </div>
                 <div className="items-center h-14 w-full flex justify-between">
-                    <button className="border border-slate-200 rounded-md text-slate-800 bg-slate-200 px-6 py-2 font-semibold hover:border-slate-500 duration-300">
+                    <button
+                        onClick={clearData}
+                        className="border border-slate-200 rounded-md text-slate-800 bg-slate-200 px-6 py-2 font-semibold hover:border-slate-500 duration-300"
+                    >
                         Clear
                     </button>
                     <button
