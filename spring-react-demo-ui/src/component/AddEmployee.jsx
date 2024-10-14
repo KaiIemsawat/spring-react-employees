@@ -28,8 +28,8 @@ const AddEmployee = () => {
     return (
         <div className="flex max-w-2xl shadow-md rounded-md mx-auto bg-slate-100 my-8">
             <div className="p-8 flex flex-col gap-2 w-full">
-                <div className="font-thin text-2xl tracking-wider text-slate-400">
-                    <h1 className="">Add new employee</h1>
+                <div className="font-thin text-3xl tracking-wider text-slate-400 flex justify-center">
+                    <h1 className="font-semibold">Add new employee</h1>
                 </div>
                 <div className="flex-col justify-center h-14 w-full my-4 flex">
                     <label htmlFor="" className="text-slate-600 block">
