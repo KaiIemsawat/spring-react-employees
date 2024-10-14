@@ -83,6 +83,7 @@ const AddEmployee = () => {
                     </button>
                     <button
                         onClick={saveEmployee}
+                        type="submit"
                         className="rounded-md text-slate-200 bg-slate-800 px-6 py-2 font-semibold hover:bg-slate-500 duration-300"
                     >
                         Save

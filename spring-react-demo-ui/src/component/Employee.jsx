@@ -1,4 +1,4 @@
-const Employee = ({ employee }) => {
+const Employee = ({ employee, deleteEmployee }) => {
     return (
         <tr
             className="bg-[#cdd3d3] text-slate-800 h-12 text-lg"
@@ -21,8 +21,8 @@ const Employee = ({ employee }) => {
                     Edit
                 </a>
                 <a
-                    href="#"
-                    className="text-slate-500 hover:text-rose-500 hover:underline duration-300"
+                    onClick={(e, id) => deleteEmployee(e, employee.id)}
+                    className="text-slate-500 hover:text-rose-500 hover:underline duration-300 hover:cursor-pointer"
                 >
                     Delete
                 </a>

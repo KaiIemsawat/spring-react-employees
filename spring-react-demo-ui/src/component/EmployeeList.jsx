@@ -24,6 +24,19 @@ const EmployeeList = () => {
         fetchData();
     }, []);
 
+    const deleteEmployee = (e, id) => {
+        e.preventDefault();
+        EmployeeService.deleteEmployee(id).then((res) => {
+            if (employees) {
+                setemployees((prevEmployees) => {
+                    return prevEmployees.filter(
+                        (employee) => employee.id !== id
+                    );
+                });
+            }
+        });
+    };
+
     return (
         <div className="container mx-auto my-6 max-w-[1240px] px-16">
             <div className="h-12">
@@ -55,6 +68,7 @@ const EmployeeList = () => {
                             {!!employees &&
                                 employees.map((employee) => (
                                     <Employee
+                                        deleteEmployee={deleteEmployee}
                                         employee={employee}
                                         key={employee.id}
                                     />
